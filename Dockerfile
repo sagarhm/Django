@@ -18,4 +18,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8080
 
 # Run the command to start the server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
+CMD ["python", "my_django_app.py", "runserver", "0.0.0.0:8080"]
