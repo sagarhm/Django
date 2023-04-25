@@ -12,6 +12,8 @@ Devops Task 3:
 
 
 # Deliverables: 
+
 1.Record a video showing django web page on "http://IP_ADDRESS".
+
 2.Github link for dockerfile used for dockerizing django app.
 Record terminal showing running docker container and  web page showing django app on "http://IP_ADDRESS:8080”
