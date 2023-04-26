@@ -1,21 +1,21 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim-buster
+# Dockerfile
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+# The first instruction is what image we want to base our container on
+# We Use an official Python runtime as a parent image
+FROM python:3.8
 
-# Set the working directory to /app
-WORKDIR /app
+# Allows docker to cache installed dependencies between builds
+COPY requirements.txt requirements.txt
+RUN pip install --upgrade pip
+RUN pip3 install --no-cache-dir -r requirements.txt
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Mounts the application code to the image
+COPY . mysite
+WORKDIR /mysite
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 8000
 
-# Expose port 8080 to the outside world
-EXPOSE 8080
-
-# Run the command to start the server
-CMD ["python", "my_django_app.py", "runserver", "0.0.0.0:8080"]
+# runs the production server
+ENTRYPOINT ["python", "mysite/manage.py"]
+CMD ["runserver", "0.0.0.0:8000"]
+~                                
